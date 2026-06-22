@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云开体育 · 简明指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            background: #f8f6f1;
+            color: #2b2b2b;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fffcf8;
+            border-radius: 32px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            padding: 2.5rem 2rem 3rem;
+        }
+        @media (min-width: 600px) {
+            body { padding: 3rem 2rem; }
+            .container { padding: 3rem 3rem 4rem; }
+        }
+
+        /* 主视觉 — 柔和引言 */
+        .hero {
+            margin-bottom: 2.8rem;
+            text-align: left;
+            border-left: 4px solid #c9aa7b;
+            padding-left: 1.5rem;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: #2f2a24;
+            margin-bottom: 0.3rem;
+        }
+        .hero .sub {
+            font-size: 1rem;
+            color: #7a6f64;
+            margin-top: 0.25rem;
+            font-weight: 350;
+        }
+
+        /* 信息卡片通用 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin: 2.2rem 0 2.8rem;
+        }
+        .card {
+            background: #f5f2ec;
+            border-radius: 24px;
+            padding: 1.6rem 1.8rem;
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .card h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #3d352d;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .card p {
+            font-size: 0.98rem;
+            color: #4c443c;
+            margin-bottom: 0.5rem;
+        }
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 0.3rem;
+        }
+        .card li {
+            position: relative;
+            padding-left: 1.3rem;
+            margin-bottom: 0.25rem;
+            font-size: 0.96rem;
+            color: #4c443c;
+        }
+        .card li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #b39770;
+            font-weight: 600;
+        }
+
+        /* 提示框 / 引用块 */
+        .notice {
+            background: #efeae2;
+            border-left: 5px solid #b39770;
+            padding: 1.3rem 1.8rem;
+            border-radius: 20px;
+            margin: 2.5rem 0 2rem;
+            font-size: 0.95rem;
+            color: #3d352d;
+        }
+        .notice strong {
+            font-weight: 500;
+            color: #2f2a24;
+        }
+        .notice a {
+            color: #5f4f3a;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #c9aa7b;
+            transition: color 0.15s;
+        }
+        .notice a:hover {
+            color: #2f2a24;
+            text-decoration-color: #a38860;
+        }
+
+        /* 自然链接段落 */
+        .link-sentence {
+            margin: 2rem 0 0.8rem;
+            padding: 1.2rem 0 0.6rem;
+            border-top: 1px solid #e0d8cf;
+        }
+        .link-sentence p {
+            font-size: 1rem;
+            color: #4c443c;
+        }
+        .link-sentence a {
+            color: #5f4f3a;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #c9aa7b;
+            font-weight: 400;
+        }
+        .link-sentence a:hover {
+            color: #2f2a24;
+            text-decoration-color: #8b755a;
+        }
+
+        /* FAQ 摘要 — 极简 */
+        .faq-mini {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0d8cf;
+        }
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            color: #4c443c;
+        }
+        .faq-mini summary {
+            cursor: pointer;
+            font-weight: 400;
+            color: #3d352d;
+            padding: 0.3rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+        .faq-mini summary::before {
+            content: "▸";
+            margin-right: 0.6rem;
+            color: #b39770;
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+        .faq-mini details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        .faq-mini details p {
+            margin-top: 0.3rem;
+            padding-left: 1.6rem;
+            color: #5f5549;
+            font-size: 0.93rem;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.6rem; }
+            .card { padding: 1.3rem 1.2rem; }
+            .container { padding: 1.8rem 1rem 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 主视觉 -->
+    <div class="hero">
+        <h1>云开体育 · 简明指南</h1>
+        <div class="sub">从使用到理解，一条安静的路径</div>
+    </div>
+
+    <!-- 用途卡片（信息卡片式） -->
+    <div class="card-grid">
+        <div class="card">
+            <h2>📋 主要用途</h2>
+            <p>了解一项体育服务的结构，通常从它的核心用途开始。云开体育所呈现的页面围绕赛事信息、数据查询和基础互动展开，适合日常浏览与信息获取。界面侧重清晰与效率，减少冗余装饰，让内容本身成为焦点。</p>
+            <p>你可以把它理解为一个轻量的信息容器——不是堆砌功能，而是提供可读、可查、可跟随的逻辑。</p>
+        </div>
+        <div class="card">
+            <h2>👤 适合人群</h2>
+            <p>如果你习惯自己判断信息、不依赖夸张引导，或者只是想在安静的环境里查看赛事动态，这个方向或许对味。</p>
+            <ul>
+                <li>喜欢简洁界面、不被打扰的浏览者</li>
+                <li>对体育数据有一定兴趣，但不需要过度渲染</li>
+                <li>希望在访问前先了解页面调性的人</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 提示框 / 引用块 (访问提醒) -->
+    <div class="notice">
+        <strong>访问提醒</strong><br>
+        本站为 <a href="https://beta-yunkaisports.com">云开体育</a> 的介绍页，不涉及注册、下载或充值引导。如果你准备前往主站，建议先了解页面结构——信息排列偏紧凑，适合用桌面或平板浏览。移动端同样可用，部分模块会自适应调整。保持自然就好。
+    </div>
+
+    <!-- 自然链接段落（嵌入句子） -->
+    <div class="link-sentence">
+        <p>如果你对体育信息页面的组织方式感兴趣，或者只是路过想看看，可以直接前往 <a href="https://beta-yunkaisports.com">云开体育</a> 感受一下它的布局与节奏。那里没有弹窗干扰，内容本身是安静的。</p>
+    </div>
+
+    <!-- FAQ 摘要（极简，两个问题） -->
+    <div class="faq-mini">
+        <details>
+            <summary>这个介绍页跟主站有什么关系？</summary>
+            <p>这里是一份前置说明，帮助你提前了解页面的调性和内容结构，避免初次访问时的陌生感。主站是独立运行的体育信息页面，两者互不干扰。</p>
+        </details>
+        <details>
+            <summary>访问主站需要注意什么？</summary>
+            <p>不需要注册或登录即可浏览大部分内容。页面采用卡片与列表结合的方式，信息密度中等，滚动时节奏平缓。建议使用现代浏览器以获得完整排版。</p>
+        </details>
+    </div>
+
+    <!-- 页脚仅作为收束，不额外加链接 -->
+    <div style="margin-top: 2.4rem; font-size: 0.8rem; color: #a69a8e; text-align: left; border-top: 1px solid #ede7df; padding-top: 1.2rem;">
+        2025 · 信息卡片式介绍
+    </div>
+</div>
+</body>
+</html>
